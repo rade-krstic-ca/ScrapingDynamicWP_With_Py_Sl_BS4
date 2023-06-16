@@ -273,10 +273,25 @@ class TestingPage:
         return bus_lines
     
     def choose_destination(self, busLines_list):
+        directon_list =[]
         for line in busLines_list:
-            my_destination = input("Choose destination: ")
+            my_destination = input("TIP: Choose destination from list abowe. You can select the entire text or only part of the text that is offered and than just do 'copy/paste'.  \nChoose destination: ")
             for line in busLines_list:
-                if my_destination == line[0]:
+                out = re.search(my_destination,line[0])
+                if out != None:
+                    directon_list.append(line)
+
+        if len(directon_list) ==1:
+            return directon_list[0]
+        else:
+            choose = ''
+            print("You can choose between:")
+            for dest in directon_list:
+                print(f" - {dest[0]}")
+            choose = input("Choose between abowe:")
+            for line in busLines_list:
+                out = re.search(choose,line[0])
+                if out != None:
                     return line
                 
     def get_BusTimeTable(self, bus_line, choose):

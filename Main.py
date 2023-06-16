@@ -57,14 +57,6 @@ def choose_page():
         html_code = url + find_tag['href']
         #webbrowser.open(html_code)
         testing = TestingPage.TestingPage(html_code)
-        
-        #if choos == 3:
-        #    busLines_list = testing.get_InternationalBusLines_List_wintBS()
-        #    #destination_list = testing.ExtractingWithBS()
-        #    
-        #else:
-        #    busLines_list = testing.get_LokalBusLines_List_wintBS()
-            #busLines_list = testing.get_BusLines_List()
         busLines_list = testing.get_BusLines_List_withBS(choos)
         destination_choose = testing.choose_destination(busLines_list)
         polasci = testing.get_BusTimeTable(destination_choose, choos)
@@ -72,19 +64,9 @@ def choose_page():
         return polasci
         
 polasci = choose_page()
-#i = 0
-#print("\n" + 10*"--//\\")
-#print("from list:")
-#for polazak in polasci:
-#    print(f"List {i}: {polazak}")
-#    i+=1
+
 print()
 os.system('cls')
-#Just for the TEST v, by building a Method (DON't USE LIKE THAT):
-timeTable = [
-    [{'Polazak': '09:30'}, {'Dolazak': '15.06.2023 10:55'}, {'Prevoznik': 'AS TOURS DOO'}, {'Linija': 'NOVI SAD MAS - ZRENJANIN AS -SRPSKA CRNJA'}, {'Peron': '10'}, {'Cena jednosmerne': '690.00'}, {'Info': ''}],
-    [{'Polazak': '18:00'}, {'Dolazak': '15.06.2023 19:40'}, {'Prevoznik': 'AS TOURS DOO'}, {'Linija': 'NOVI SAD MAS - ZRENJANIN AS -SRPSKA CRNJA'}, {'Peron': '10'}, {'Cena jednosmerne': '690.00'}, {'Info': ''}]
-             ]
 testing = TestingPage.TestingPage(html_code)
 testing.reading_TimeTable(polasci)
 #Just fot the TEST^
