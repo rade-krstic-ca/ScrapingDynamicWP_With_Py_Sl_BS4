@@ -274,25 +274,23 @@ class TestingPage:
     
     def choose_destination(self, busLines_list):
         directon_list =[]
+        my_destination = input("TIP: Choose destination from list abowe. You can select the entire text or only part of the text that is offered and than just do 'copy/paste'.  \nChoose destination: ")
         for line in busLines_list:
-            my_destination = input("TIP: Choose destination from list abowe. You can select the entire text or only part of the text that is offered and than just do 'copy/paste'.  \nChoose destination: ")
-            for line in busLines_list:
-                out = re.search(my_destination,line[0])
-                if out != None:
-                    directon_list.append(line)
+            out = re.search(my_destination.upper(),line[0])
+            if out != None:
+                directon_list.append(line)
 
         if len(directon_list) ==1:
             return directon_list[0]
         else:
             choose = ''
             print("You can choose between:")
+            i = 1
             for dest in directon_list:
-                print(f" - {dest[0]}")
-            choose = input("Choose between abowe:")
-            for line in busLines_list:
-                out = re.search(choose,line[0])
-                if out != None:
-                    return line
+                print(f"{i} - {dest[0]}")
+                i += 1
+            choose = input("Choose an number from abowe: ")
+            return directon_list[int(choose)-1]
                 
     def get_BusTimeTable(self, bus_line, choose):
         driver = webdriver.Chrome()
@@ -388,7 +386,7 @@ class TestingPage:
             return timetable
     def reading_TimeTable(self, timeTable):
         i = 1
-        if len(timeTable) > 3:
+        if len(timeTable) > 1:
             for table in timeTable:
                 #print(table)
                 print(f"Line {i}:")
