@@ -384,15 +384,26 @@ class TestingPage:
             for dict in timetable:
                 print(f"dictinary: {dict}")
             return timetable
+        
     def reading_TimeTable(self, timeTable):
         i = 1
-        if len(timeTable) > 1:
-            for table in timeTable:
+        for table in timeTable:
+            if len(table) == 7:
                 #print(table)
                 print(f"Line {i}:")
                 for dict in table:
                     print(dict)
                 i += 1
-        else:
-            for dict in timeTable:
-                print(dict)
+            else:
+                for dict in timeTable:
+                    print(dict)
+                break
+
+#pipl_crew = []
+#people_crew = response.json()['people']
+#for pipl in people_crew:
+#    print(f"{i}: {pipl}")
+#    pipl_crew.append(pipl)
+#    i += 1
+#for man in pipl_crew:
+#    print(f"Name: {man['name']} => {man['craft']}")
