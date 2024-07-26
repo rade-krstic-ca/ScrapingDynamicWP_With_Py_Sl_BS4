@@ -279,7 +279,6 @@ class TestingPage:
             out = re.search(my_destination.upper(),line[0])
             if out != None:
                 directon_list.append(line)
-
         if len(directon_list) ==1:
             return directon_list[0]
         else:
